@@ -10,19 +10,21 @@
                 padding: 50px;
                 background-color: #EEE;
             }
-            #container h1 {
-                font-size: 144px;
-                font-family: sans-serif;
-                color: #0080A8;
-            }
         </style>
     </head>
     <body>
         <div id='container'></div>
         <script type='text/babel'>
+            var destination = document.querySelector("#container");
+
             ReactDOM.render(
-                <h1>Steph Perez</h1>,
-                document.querySelector("#container")
+                <div>
+                    <h1>Batman</h1>
+                    <h1>Iron Man</h1>
+                    <h1>Nicolas Cage</h1>
+                    <h1>Mega Man</h1>
+                </div>,
+                destination
             );
         </script>
     </body>
