@@ -13,11 +13,13 @@
             <script type='text/babel'>
 
                 class HelloWorld extends React.Component{
-                    
+                    render(){
+                        return <p>Hello, componentized world!</p>
+                    }
                 }
 
                 ReactDOM.render(
-                    <div><p>Hello, world!</p></div>,
+                    <HelloWorld/>,
                     document.querySelector("#container")
                 );
             </script>
