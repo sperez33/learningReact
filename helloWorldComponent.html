@@ -13,12 +13,7 @@
   <style>
 	#container {
 		padding: 50px;
-		background-color: #EEE;
-	}
-	#container h1 {
-		font-size: 144px;
-		font-family: sans-serif;
-		color: #0080A8;
+		background-color: #FFF;
 	}
   </style>
 </head>
@@ -27,27 +22,27 @@
 	<div id="container"></div>
   <script type="text/babel">
   
-	function getDistance(speed, time) {
-		var result = speed * time;
-		alert(result);
-	}
+	var destination = document.querySelector('#container');
 	
-	class HelloWorld extends React.Component{
+	class Letter extends React.Component{
 		render() {
-			return <p>Hello, {this.props.greetTarget}{this.props.punctuation}</p>			
+			return (
+                <div>
+                    {this.props.children}
+                </div>
+            )		
 		}
 	}
 
 	ReactDOM.render(
 		<div>
-			<HelloWorld greetTarget="Batman" punctuation="!" />
-			<HelloWorld greetTarget="Iron Man" punctuation="."/>
-			<HelloWorld greetTarget="Nicolas Cage" punctuation="?"/>
-			<HelloWorld greetTarget="Mega Man" punctuation="..."/>
-			<HelloWorld greetTarget="Bono"/>
-			<HelloWorld greetTarget="Catwoman"/>
-		</div>,
-	  document.querySelector("#container")
+            <Letter>A</Letter>
+            <Letter>E</Letter>
+            <Letter>I</Letter>
+            <Letter>O</Letter>
+            <Letter>U</Letter>
+        </div>
+        ,destination
 	);
   </script>
 </body>
