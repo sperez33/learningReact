@@ -3,122 +3,50 @@
 
 <head>
   <meta charset="utf-8">
-  <title>More Components</title>
+  <title>Dealing with State</title>
   <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
 
-  <style>
-    #container {
-      padding: 50px;
-      background-color: #FFF;
-    }
-  </style>
 </head>
 
 <body>
-  <div id="container"></div>
+    <div id="container"></div>
 
-  <script type="text/babel">
-    class Square extends React.Component {
-      render() {
-        var squareStyle = {
-          height: 150,
-          backgroundColor: this.props.color
-        };
-    
-        return (
-          <div style={squareStyle}>
-    
-          </div>
-        );
-      }
-    }
-    
-    class Label extends React.Component {
-      render() {
-        var labelStyle = {
-          fontFamily: "sans-serif",
-          fontWeight: "bold",
-          padding: 13,
-          margin: 0
-        };
-    
-        return (
-          <p style={labelStyle}>{this.props.color}</p>
-        );
-      }
-    }
-    
-    class Card extends React.Component {
-      render() {
-        var cardStyle = {
-          height: 200,
-          width: 150,
-          padding: 0,
-          backgroundColor: "#FFF",
-          boxShadow: "0px 0px 5px #666"
-        };
-    
-        return (
-          <div style={cardStyle}>
-            <Square color={this.props.color} />
-            <Label color={this.props.color} />
-          </div>
-        );
-      }
-    }
-
-    class Stuff extends React.Component {
-        render() {
-            return (
-                <h1> Boring {(Math.random() * 100).toFixed(0)} content!</h1>
-                //added ".toFixed(0)" to remove unnecessary decimal points
-            );
-        }
-    };
-    
-    class Stuffs extends React.Component {
-        render(){
-            return (
-                <React.Fragment>
-                    <p>I am</p>,
-                    <p>returning a list</p>,
-                    <p>of things!</p>
-                </React.Fragment>
-            );
-        }
-    };
-
-    class StyleTest extends React.Component {
-        render (){
-            var letterStyle = {
-                padding: 10,
-                margin: 10,
-                backgroundColor: this.props.bgcolor,
-                colro: "#333",
-                display: "inline-block",
-                fontFamily: "monospace",
-                fontSize: "32",
-                textAlign: "center"
+    <script type="text/babel">
+        class LightningCounter extends React.Component {
+            render(){
+                return (
+                    <h1>Hello!</h1>
+                );
             }
-            return (
-                <div style={letterStyle}>
-                    <p>Blah!</p> {/* when there's a variable for styling, only multiline comments work */}
-                </div>
-            );
         }
-    };
 
-    var swatchComponent = <Swatch color = "2F004F"></Swatch>
+        class LightningCounterDisplay extends React.Component {
+            render(){
+                var divStyle = {
+                    width: 250,
+                    textAlign: "center",
+                    backgroundColor: "black",
+                    padding: 40,
+                    fontFamily: "sans-serif",
+                    color: "#999",
+                    borderRadius: 10
+                };
 
-    ReactDOM.render(
-      <div>
-        <StyleTest/>
-      </div>,
-      document.querySelector("#container")
-    );
-  </script>
+                return (
+                    <div style={divStyle}>
+                        <LightningCounter/>
+                    </div>
+                );
+            }
+        }
+
+        ReactDOM.render(
+            <LightningCounterDisplay/>,
+            document.querySelector("#container")
+        );
+    </script>
 </body>
 
 </html>
