@@ -14,14 +14,36 @@
     <div id="container"></div>
 
     <script type="text/babel">
+        // this class builds a timer that counts up by the second using the state function
         class LightningCounter extends React.Component {
+            constructor(props){
+                super(props);
+
+                this.state = {
+                    strikes: 0
+                };
+
+                this.timerTick = this.timerTick.bind(this); //the state needs to be bound to the timer tick or it wont display
+            }
+
+            timerTick(){
+                this.setState({
+                    strikes: this.state.strikes + 100
+                });
+            }
+
+            componentDidMount(){
+                setInterval(this.timerTick, 1000)
+            }
+
             render(){
                 return (
-                    <h1>Hello!</h1>
+                    <h1>{this.state.strikes}</h1>
                 );
             }
         }
 
+        // this class is the aesthetics and the class from above passes down into this one in the return
         class LightningCounterDisplay extends React.Component {
             render(){
                 var divStyle = {
