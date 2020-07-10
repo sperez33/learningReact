@@ -68,10 +68,53 @@
         );
       }
     }
+
+    class Stuff extends React.Component {
+        render() {
+            return (
+                <h1> Boring {(Math.random() * 100).toFixed(0)} content!</h1>
+                //added ".toFixed(0)" to remove unnecessary decimal points
+            );
+        }
+    };
     
+    class Stuffs extends React.Component {
+        render(){
+            return (
+                <React.Fragment>
+                    <p>I am</p>,
+                    <p>returning a list</p>,
+                    <p>of things!</p>
+                </React.Fragment>
+            );
+        }
+    };
+
+    class StyleTest extends React.Component {
+        render (){
+            var letterStyle = {
+                padding: 10,
+                margin: 10,
+                backgroundColor: this.props.bgcolor,
+                colro: "#333",
+                display: "inline-block",
+                fontFamily: "monospace",
+                fontSize: "32",
+                textAlign: "center"
+            }
+            return (
+                <div style={letterStyle}>
+                    <p>Blah!</p> {/* when there's a variable for styling, only multiline comments work */}
+                </div>
+            );
+        }
+    };
+
+    var swatchComponent = <Swatch color = "2F004F"></Swatch>
+
     ReactDOM.render(
       <div>
-        <Card color="#FF6663" />
+        <StyleTest/>
       </div>,
       document.querySelector("#container")
     );
