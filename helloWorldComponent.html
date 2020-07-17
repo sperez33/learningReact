@@ -33,15 +33,38 @@
                 };
 
                 return (
-                <div style={circleStyle}>
-                </div>
+                    <div style={circleStyle}>
+                    </div>
                 );
             }
         }
 
+        function showCircle() {
+            var colors = ["#393E41", "#E94F37", "#1C89BF", "#A1D363"];
+            var ran = Math.floor(Math.random() * colors.length);
+            
+            // return a Circle with a randomly chosen color
+            return <Circle bgColor={colors[ran]} />;
+        }
+
+        //single stable color
+        var theCircle = <Circle bgColor="#F9C240" />;
+
+        var colors = ["#393E41", "#E94F37", "#1C89BF", "#A1D363",
+              "#85FFC7", "#297373", "#FF8552", "#A40E4C"];
+        var renderData = [];
+
+        for (var i = 0; i < colors.length; i++) {
+            var color = colors[i];
+            renderData.push(<Circle key={i + color} bgColor={color}/>)
+        }
+
         ReactDOM.render(
             <div>
-                <Circle bgColor="#F9C240" />
+                {/*{showCircle()}
+                {showCircle()}
+                {showCircle()}*/}
+                {renderData}
             </div>,
             document.querySelector("#container")
         );
