@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>From Data to UI</title>
+    <title>Events In React</title>
     <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
@@ -20,51 +20,72 @@
     <div id="container"></div>
 
     <script type="text/babel">
-        class Circle extends React.Component {
+        class Counter extends React.Component {
             render() {
-                var circleStyle = {
-                padding: 10,
-                margin: 20,
-                display: "inline-block",
-                backgroundColor: this.props.bgColor,
-                borderRadius: "50%",
-                width: 100,
-                height: 100,
+                var textStyle = {
+                    fontSize: 72,
+                    fontFamily: "sans-serif",
+                    color: "#333",
+                    fontWeight: "bold"
                 };
 
                 return (
-                    <div style={circleStyle}>
+                    <div style={textStyle}>
+                        {this.props.display}
                     </div>
                 );
             }
         }
 
-        function showCircle() {
-            var colors = ["#393E41", "#E94F37", "#1C89BF", "#A1D363"];
-            var ran = Math.floor(Math.random() * colors.length);
-            
-            // return a Circle with a randomly chosen color
-            return <Circle bgColor={colors[ran]} />;
-        }
+        class CounterParent extends React.Component {
+            constructor(props) {
+                super(props);
 
-        //single stable color
-        var theCircle = <Circle bgColor="#F9C240" />;
+                this.state = {
+                    count: 0
+                };
 
-        var colors = ["#393E41", "#E94F37", "#1C89BF", "#A1D363",
-              "#85FFC7", "#297373", "#FF8552", "#A40E4C"];
-        var renderData = [];
+                this.increase = this.increase.bind(this);
+            }
 
-        for (var i = 0; i < colors.length; i++) {
-            var color = colors[i];
-            renderData.push(<Circle key={i + color} bgColor={color}/>)
+            increase(e) {
+                this.setState({
+                    count: this.state.count + 1
+                });
+            }
+
+            render(){
+                var backgroundStyle = {
+                    padding: 50,
+                    backgroundColor: "#FFC53A",
+                    width: 250,
+                    height: 100,
+                    borderRadius: 20,
+                    textAlign: "center"
+                };
+
+                var buttonStyle = {
+                    fontSize: "1em",
+                    width: 30,
+                    height: 30,
+                    fontFamily: "sans-serif",
+                    color: "#333",
+                    fontWeight: "bold",
+                    lineHeight: "3px"
+                };
+
+                return (
+                    <div style={backgroundStyle}>
+                        <Counter display={this.state.count} />
+                        <button onClick={this.increase} style={buttonStyle}>+</button>
+                    </div>
+                );
+            }
         }
 
         ReactDOM.render(
             <div>
-                {/*{showCircle()}
-                {showCircle()}
-                {showCircle()}*/}
-                {renderData}
+                <CounterParent />
             </div>,
             document.querySelector("#container")
         );
