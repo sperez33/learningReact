@@ -40,11 +40,32 @@
       border-color: #111;
       cursor: pointer;
     }
+
+    #colorHeading {
+        padding: 0;
+        margin: 50px;
+        margin-bottom: -20px;
+        font-family: sans-serif;
+    }
   </style>
 </head>
 <body>
+<h1 id="colorHeading">Colorizer</h1>
 <div id="container"></div>
 <script type="text/babel">
+
+    var heading = document.querySelector("#colorHeading");
+
+    class ColorLabel extends React.Component {
+        render() {
+            return ReactDOM.createPortal(
+                ": " + this.props.color,
+                heading
+            );
+        }
+    }
+
+
 
     var destination = document.querySelector("#container");
 
@@ -72,6 +93,7 @@
 
         this._input.focus();
         this._input.value = "";
+
         e.preventDefault();
       }
 
@@ -90,13 +112,12 @@
               <input onChange={this.colorValue} 
                     ref={
                         //React Mount will pass DOM element through "el" parameter
-                        function(el){
-                            self._input = el;
-                        }
+                        (el) => this._input = el
                     }
                      placeholder="Enter a color value"></input>
               <button type="submit">go</button>
             </form>
+            <ColorLabel color={this.state.bgColor} />
           </div>
         );
       }
